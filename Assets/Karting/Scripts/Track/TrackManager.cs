@@ -20,7 +20,10 @@ namespace KartGame.Track
         [Tooltip("Reference to an object responsible for repositioning karts.")]
         public KartRepositioner kartRepositioner;
 
-        bool m_IsRaceRunning;
+		[Tooltip("A reference to the game over canvas.")]
+		public Canvas gameOverCanvas;
+
+		bool m_IsRaceRunning;
         Dictionary<IRacer, Checkpoint> m_RacerNextCheckpoints = new Dictionary<IRacer, Checkpoint> (16);
         TrackRecord m_SessionBestLap = TrackRecord.CreateDefault ();
         TrackRecord m_SessionBestRace = TrackRecord.CreateDefault ();
@@ -208,7 +211,9 @@ namespace KartGame.Track
 
                         racer.DisableControl ();
                         racer.PauseTimer ();
-                    }
+
+						gameOverCanvas.gameObject.SetActive(true);
+	}
                 }
 
                 if (CanEndRace ())
