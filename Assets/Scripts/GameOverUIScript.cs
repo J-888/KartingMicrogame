@@ -10,9 +10,9 @@ public class GameOverUIScript : MonoBehaviour
 		m_MenuButton.onClick.AddListener(delegate { CustomSceneManager.sceneManager.LoadMenu(); });
 	}
 
-	[SerializeField]
-	private Button m_RetryButton;
+	[Tooltip("Reference to the retry button.")]
+	public Button m_RetryButton;
 
-	[SerializeField]
-	private Button m_MenuButton;
+	[Tooltip("Reference to the menu button.")]
+	public Button m_MenuButton;
 }

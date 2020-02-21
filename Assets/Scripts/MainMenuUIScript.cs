@@ -24,14 +24,15 @@ public class MainMenuUIScript : MonoBehaviour
 		}
 	}
 
-	[SerializeField]
-	private Button m_PlayButton;
+	[Tooltip("Reference to the play button.")]
+	public Button m_PlayButton;
 
-	[SerializeField]
-	private Button m_ExitButton;
+	[Tooltip("Reference to the exit button.")]
+	public Button m_ExitButton;
 
-	[SerializeField]
-	private Text m_RecordText;
+	[Tooltip("Reference to the record text.")]
+	public Text m_RecordText;
 
-	private string trackName = "ArtTest";
+	[Tooltip("Track to display the record for.")]
+	public string trackName = "ArtTest";
 }

@@ -29,9 +29,9 @@ public class CustomSceneManager : MonoBehaviour
 		Application.Quit();
 	}
 
-	//[SerializeField]
-	private string MainMenuScene = "MainMenuScene";
+	[Tooltip("Main menu scene name.")]
+	public string MainMenuScene = "MainMenuScene";
 
-	//[SerializeField]
-	private string LevelScene = "LevelScene";
+	[Tooltip("Level scene name.")]
+	public string LevelScene = "LevelScene";
 }
