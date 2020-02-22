@@ -211,7 +211,7 @@ namespace KartGame.Track
                             m_SessionBestRace.SetRecord (trackName, raceLapTotal, racer, raceTime);
 
                         if (m_HistoricalBestRace.time > raceTime)
-                            m_HistoricalBestLap.SetRecord (trackName, raceLapTotal, racer, raceTime);
+							m_HistoricalBestRace.SetRecord (trackName, raceLapTotal, racer, raceTime);
 
                         racer.DisableControl ();
                         racer.PauseTimer ();
