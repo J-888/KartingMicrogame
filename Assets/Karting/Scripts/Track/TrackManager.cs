@@ -19,9 +19,10 @@ namespace KartGame.Track
         public List<Checkpoint> checkpoints = new List<Checkpoint> ();
         [Tooltip("Reference to an object responsible for repositioning karts.")]
         public KartRepositioner kartRepositioner;
-
 		[Tooltip("A reference to the game over canvas.")]
 		public Canvas gameOverCanvas;
+		[Tooltip("Reference to the new record canvas.")]
+		public TempDisplayScript newRecordCanvas;
 
 		bool m_IsRaceRunning;
         Dictionary<IRacer, Checkpoint> m_RacerNextCheckpoints = new Dictionary<IRacer, Checkpoint> (16);
@@ -186,7 +187,8 @@ namespace KartGame.Track
 
         void RacerHitCorrectCheckpoint (IRacer racer, Checkpoint checkpoint)
         {
-            if (checkpoint.isStartFinishLine)
+
+			if (checkpoint.isStartFinishLine)
             {
                 int racerCurrentLap = racer.GetCurrentLap ();
                 if (racerCurrentLap > 0)
@@ -196,10 +198,12 @@ namespace KartGame.Track
                     if (m_SessionBestLap.time > lapTime)
                         m_SessionBestLap.SetRecord (trackName, 1, racer, lapTime);
 
-                    if (m_HistoricalBestLap.time > lapTime)
-                        m_HistoricalBestLap.SetRecord (trackName, 1, racer, lapTime);
+					if(m_HistoricalBestLap.time > lapTime) {
+						m_HistoricalBestLap.SetRecord(trackName, 1, racer, lapTime);
+						newRecordCanvas.TempDisplay();
+					}
 
-                    if (racerCurrentLap == raceLapTotal)
+					if (racerCurrentLap == raceLapTotal)
                     {
                         float raceTime = racer.GetRaceTime ();
 
