@@ -128,7 +128,7 @@ namespace KartGame.Track
                 m_RacerNextCheckpoints.Add (racer, checkpoints[0]);
                 racer.DisableControl ();
             }
-        }
+		}
 
         /// <summary>
         /// Starts the timers and enables control of all racers.
@@ -220,6 +220,10 @@ namespace KartGame.Track
 
                         racer.DisableControl ();
                         racer.PauseTimer ();
+
+						SaveManager.saveManager.Load(); // Not necessary since it was loaded on the main menu, done here as a double check
+						SaveManager.saveManager.earnedCoins += earnedCoins;
+						SaveManager.saveManager.Save();
 
 						gameOverCanvas.gameObject.SetActive(true);
 					}
