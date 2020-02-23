@@ -23,6 +23,8 @@ namespace KartGame.Track
 		public Canvas gameOverCanvas;
 		[Tooltip("Reference to the new record canvas.")]
 		public TempDisplayScript newRecordCanvas;
+		[Tooltip("Reference to the coin canvas.")]
+		public CoinCanvas coinCanvas;
 
 		bool m_IsRaceRunning;
         Dictionary<IRacer, Checkpoint> m_RacerNextCheckpoints = new Dictionary<IRacer, Checkpoint> (16);
@@ -287,7 +289,7 @@ namespace KartGame.Track
         }
 
 		public void PickUpCoin() {
-			++earnedCoins;
+			coinCanvas.RefreshCoinText(++earnedCoins);
 		}
     }
 }
