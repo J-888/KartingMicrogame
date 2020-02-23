@@ -31,6 +31,9 @@ namespace KartGame.Track
         TrackRecord m_HistoricalBestLap;
         TrackRecord m_HistoricalBestRace;
 
+		Coin[] coins;
+		int earnedCoins;
+
         public bool IsRaceRunning => m_IsRaceRunning;
 
         /// <summary>
@@ -92,6 +95,8 @@ namespace KartGame.Track
             
             m_HistoricalBestLap = TrackRecord.Load (trackName, 1);
             m_HistoricalBestRace = TrackRecord.Load (trackName, raceLapTotal);
+
+			coins = FindObjectsOfType<Coin>();
         }
 
         void OnEnable ()
@@ -217,8 +222,12 @@ namespace KartGame.Track
                         racer.PauseTimer ();
 
 						gameOverCanvas.gameObject.SetActive(true);
-	}
-                }
+					}
+
+					for(int i = 0; i < coins.Length; i++) {		// desactivating & activating rather than deleting and respawning coins
+						coins[i].gameObject.SetActive(true);
+					}
+				}
 
                 if (CanEndRace ())
                     StopRace ();
@@ -272,5 +281,9 @@ namespace KartGame.Track
                 movable.EnableControl ();
             kartRepositioner.OnRepositionComplete -= ReenableControl;
         }
+
+		public void PickUpCoin() {
+			++earnedCoins;
+		}
     }
 }
